@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Upravené meta tagy pro edici Everlife -->
-    <title>Everlife | Book as Artifact</title>
-    <meta name="description" content="Vizuální esej představující koncept a filozofii edice Everlife. Kniha jako artefakt, zdroj dat a umělecký objekt.">
+    <title>Everlife | A Life, as Art</title>
+    <meta name="description" content="Vizuální esej představující koncept a filozofii edice Everlife. Kniha jako artefakt, zdroj dat a umělecký objekt. Život jako umění.">
     <meta name="author" content="A VIRTÙ RESEARCH & TECHNOLOGIES s.r.o.">
-    <meta name="keywords" content="Everlife, kniha, artefakt, design, umění, literatura, badatel">
+    <meta name="keywords" content="Everlife, kniha, artefakt, design, umění, literatura, badatel, život, umění">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://avirtu.net/everlife"> <!-- Upravte dle finální URL -->
     <meta property="og:title" content="Everlife | Book as Artifact">
@@ -18,17 +18,17 @@
     <!-- Načtení fontů -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
     <style>
-        /* CSS stylopis pro stránku - ZJEDNODUŠENÁ VERZE */
+        /* CSS stylopis pro stránku - VERZE S KOMPLEXNÍ ANIMACÍ */
         html, body {
-            overflow: hidden; /* Zamezení scrollbarům */
+            overflow: hidden;
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: #000; /* Černé pozadí jako fallback */
+            background-color: #000;
         }
 
         #video-background {
@@ -37,30 +37,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1; /* Video je vespod */
+            z-index: 1;
             overflow: hidden;
         }
 
-        #video-background video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            opacity: 1;
-            transition: opacity 2s ease-out; /* Přechod pro zčernání */
-        }
+            #video-background video {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+                transform: translate(-50%, -50%);
+                opacity: 1;
+                transition: opacity 2s ease-out;
+            }
 
-        #video-background video.fade-out {
-            opacity: 0;
-        }
+                #video-background video.fade-out {
+                    opacity: 0;
+                }
 
         #content {
             position: relative;
-            z-index: 2; /* Obsah je nad videem */
+            z-index: 2;
             width: 100%;
             height: 100%;
             display: flex;
@@ -71,16 +71,96 @@
             color: white;
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
         }
-        
-        /* Jednoduchá CSS animace pro zobrazení textu */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
 
         .text-container {
-            opacity: 0; /* Text je na začátku neviditelný */
-            animation: fadeIn 2.5s ease-out 1.5s forwards; /* Animace: název, doba, průběh, zpoždění, zachování koncového stavu */
+            position: relative; /* Důležité pro pozicování sloganů */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Definice animací */
+        @keyframes slogan1-animation {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+
+            15% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            /* Fade in mezi 0% a 15% (~0-4.5s) */
+            40% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            /* Drží do 40% (~12s) */
+            50% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            /* Fade out mezi 40% a 50% (~12-15s) s lehkým pohybem nahoru */
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes title-animation {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            /* Začíná animovat v půlce */
+            65% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            /* Fade in mezi 50% a 65% (~15-19.5s) */
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slogan2-animation {
+            0% {
+                opacity: 0;
+            }
+
+            65% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            /* Začíná animovat později */
+            80% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            /* Fade in mezi 65% a 80% (~19.5-24s) */
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Aplikace animací na jednotlivé elementy */
+        #slogan1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: clamp(1.2rem, 2.5vw + 0.5rem, 2rem);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin: 0;
+            opacity: 0; /* Počáteční stav */
+            animation: slogan1-animation 30s ease-in-out forwards;
+            position: absolute; /* Aby se nepřekrýval s ostatními a zmizel bez layout shiftu */
+            width: 100%; /* Zajistí, že nebude zužovat rodičovský kontejner */
         }
 
         #title {
@@ -88,17 +168,21 @@
             font-weight: 700;
             font-size: clamp(2.5rem, 6vw + 1rem, 6rem);
             letter-spacing: 0.1em;
-            font-variant: small-caps; /* Aplikace small-caps */
+            font-variant: small-caps;
             margin: 0;
+            opacity: 0;
+            animation: title-animation 30s ease-in-out forwards;
         }
 
         #subtitle {
             font-family: 'Inter', sans-serif;
             font-weight: 300;
             font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
-            text-transform: uppercase; /* Velká písmena */
-            letter-spacing: 0.2em; /* Rozestup písmen */
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
             margin-top: 0.5em;
+            opacity: 0;
+            animation: slogan2-animation 30s ease-in-out forwards;
         }
     </style>
 </head>
@@ -114,6 +198,10 @@
 
     <section id="content">
         <div class="text-container">
+            <!-- Tento prvek se objeví první a pak zmizí -->
+            <h2 id="slogan1">A Life, as Art</h2>
+
+            <!-- Tyto prvky se objeví později a zůstanou -->
             <h1 id="title">everlife</h1>
             <h2 id="subtitle">Book as Artifact</h2>
         </div>
