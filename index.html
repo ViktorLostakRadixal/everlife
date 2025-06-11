@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Upravené meta tagy pro edici Everlife -->
+    <title>Everlife | Book as Artifact</title>
+    <meta name="description" content="Vizuální esej představující koncept a filozofii edice Everlife. Kniha jako artefakt, zdroj dat a umělecký objekt.">
+    <meta name="author" content="A VIRTÙ RESEARCH & TECHNOLOGIES s.r.o.">
+    <meta name="keywords" content="Everlife, kniha, artefakt, design, umění, literatura, badatel">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://avirtu.net/everlife"> <!-- Upravte dle finální URL -->
+    <meta property="og:title" content="Everlife | Book as Artifact">
+    <meta property="og:description" content="Vizuální esej představující koncept a filozofii edice Everlife.">
+    <meta property="og:image" content="assets/img/everlife-og-image.jpg"> <!-- Doporučuji vytvořit náhledový obrázek -->
+    <meta name="theme-color" content="#000000">
+
+    <!-- Načtení fontů -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS stylopis pro stránku - ZJEDNODUŠENÁ VERZE */
+        html, body {
+            overflow: hidden; /* Zamezení scrollbarům */
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000; /* Černé pozadí jako fallback */
+        }
+
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Video je vespod */
+            overflow: hidden;
+        }
+
+        #video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            transition: opacity 2s ease-out; /* Přechod pro zčernání */
+        }
+
+        #video-background video.fade-out {
+            opacity: 0;
+        }
+
+        #content {
+            position: relative;
+            z-index: 2; /* Obsah je nad videem */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* Jednoduchá CSS animace pro zobrazení textu */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .text-container {
+            opacity: 0; /* Text je na začátku neviditelný */
+            animation: fadeIn 2.5s ease-out 1.5s forwards; /* Animace: název, doba, průběh, zpoždění, zachování koncového stavu */
+        }
+
+        #title {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 6vw + 1rem, 6rem);
+            letter-spacing: 0.1em;
+            font-variant: small-caps; /* Aplikace small-caps */
+            margin: 0;
+        }
+
+        #subtitle {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
+            text-transform: uppercase; /* Velká písmena */
+            letter-spacing: 0.2em; /* Rozestup písmen */
+            margin-top: 0.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="video-background">
+        <!-- Zde vložte název vašeho videa -->
+        <video id="video" muted playsinline autoplay>
+            <source src="everlife-book-as-artifact.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje video tag.
+        </video>
+    </div>
+
+    <section id="content">
+        <div class="text-container">
+            <h1 id="title">everlife</h1>
+            <h2 id="subtitle">Book as Artifact</h2>
+        </div>
+    </section>
+
+    <script>
+        // MINIMÁLNÍ SCRIPT POUZE PRO OVLÁDÁNÍ VIDEA
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoElement = document.getElementById('video');
+
+            // Pokusí se přehrát video. Chyba se vypíše do konzole, ale stránka bude fungovat dál.
+            videoElement.play().catch(error => {
+                console.warn("Video se nepodařilo automaticky přehrát (to je normální chování některých prohlížečů):", error);
+            });
+
+            // Po skončení videa přidá třídu, která ho plynule skryje (zčerná).
+            videoElement.addEventListener('ended', () => {
+                videoElement.classList.add('fade-out');
+            });
+        });
+    </script>
+
+</body>
+</html>
